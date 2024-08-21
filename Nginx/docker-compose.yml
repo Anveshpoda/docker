@@ -1,0 +1,17 @@
+version: '3.8'  # Specify Docker Compose version
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: my-nginx  # Use your built image name
+    container_name: myNginxContainer # Your custom container name
+    ports:
+      - "80:80"
+    volumes:
+      - ${VOLUME_PATH}:/www
+    environment:
+      VOLUME_PATH: /home/ubuntu/www # linux
+    extra_hosts:
+      - "host.docker.internal:host-gateway"  
